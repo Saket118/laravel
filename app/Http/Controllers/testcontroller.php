@@ -73,6 +73,30 @@ class testcontroller extends Controller
     return response()->json($modelAction);
     }
 
+public function DeleteUser($id)
+{
+    $Delete = $this->test->DeleteUser($id);
+    return redirect('/dashboard')
+        ->with('success', 'User deleted successfully');
+}
+
+public  function  ShowEditForm($id){
+$userData= $this->test->singleUserData($id);
+
+return view('edit-user', ['userData' => $userData]);
+
+}
+
+public function Update_user(Request $request){
+      $data=[
+        "name" => $request->input("name"),
+        "email" => $request->input("email"),
+        'password' => $request->input("password")
+    ];
+  $UpdateUser=  $this->test->update_user($data);
+    return response()->json($UpdateUser);
+
+}
 
     }
 

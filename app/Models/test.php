@@ -51,4 +51,43 @@ else{
 }
     }
 
+    public function DeleteUser($id){
+        $delete=  DB::table('login_user')->delete($id);
+        if($delete){
+     return [
+        'status' => true,
+        'message' => 'User Delete Successfully',   
+    ];
+}
+else{
+    return [
+        'status' => false,
+        'message' => 'User cant Delete',   
+    ];
+    
+
+}}
+public function singleUserData($id){
+      $user = DB::table('login_user')->where('id', $id)->first();
+  return $user;
+}
+
+public function update_user($data){
+   $update=  DB::table('login_user')->update($data);
+
+if($update){
+     return [
+        'status' => true,
+        'message' => 'update User Successfully',   
+    ];
+}
+else{
+    return [
+        'status' => false,
+        'message' => 'User cant update',   
+    ];
+}
+}
+
+
 }

@@ -99,11 +99,25 @@
     <i class="bi bi-pencil-square"></i> Edit
 </a>
 
-                <a href="{{ url('/delete-user/'.$get->id) }}"
+<form action="{{ route('delete.user', $get->id) }}"
+      method="POST"
+      class="d-inline"
+      onsubmit="return confirm('Are you sure you want to delete this user?')">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="btn btn-sm btn-danger">
+        <i class="bi bi-trash"></i> Delete
+    </button>
+
+</form>
+
+                <!-- <a href="{{ url('/delete-user/'.$get->id) }}"
    class="btn btn-sm btn-danger"
    onclick="return confirm('Are you sure you want to delete this user?')">
     <i class="bi bi-trash"></i> Delete
-</a>
+</a> -->
             </td>
         </tr>
 
@@ -202,6 +216,9 @@
             });
 
         });
+
+       
+
 
     </script>
 
